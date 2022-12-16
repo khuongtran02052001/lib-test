@@ -14,8 +14,6 @@ jobs:
         with:
           node-version: "18.12.1" # Set Node.js Version
           registry-url: "https://registry.npmjs.org" # Set Node.js reigistry
-      - name: Deploy Info # Print GitHub Deploy info
-        run: git push origin main
       - name: Install # Install dependancies
         run: npm install
       - name: Build # Build app if needed
