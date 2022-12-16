@@ -6,18 +6,25 @@ on:
     - main
 
 jobs:
-  release:
-    name: 🚀 release
-    runs-on: ubuntu-latest
+  run:
+    runs-on: ubuntu-latest # Run on Ubuntu Docker image
     steps:
-      - name: 📚 checkout
-        uses: actions/checkout@v2.1.1
-      - name: 🟢 node
-        uses: actions/setup-node@v1.4.2
+      - name: Checkout Repo # Checkout repo
+        uses: actions/checkout@v1
+      - name: Use Node.js # Configure Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org
-      - name: 🚀 publish
-        run: npm publish --access public
+          node-version: "18.12.1" # Set Node.js Version
+          registry-url: "https://registry.npmjs.org" # Set Node.js reigistry
+      - name: Deploy Info # Print GitHub Deploy info
+      - name: Install # Install dependancies
+        run: npm install
+      - name: Build # Build app if needed
+        run: npm run build --if-present
+      - name: Test
+        run: npm run test --if-present # Run tests if needed
+      - name: Publish
+        if: github.event_name == 'release' && github.event.action == 'published' # Check if publish step should run
+        run: npm publish --access public # Publish package
         env:
-          NODE_AUTH_TOKEN: ${NPM_AUTH_TOKEN}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # Set NPM auth token from GitHub Secrets
