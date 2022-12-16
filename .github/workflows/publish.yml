@@ -1,8 +1,8 @@
-name: "🚀 release"
+name: "🚀 sdsdsd"
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   run:
     runs-on: ubuntu-latest # Run on Ubuntu Docker image
