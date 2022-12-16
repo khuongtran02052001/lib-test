@@ -8,7 +8,7 @@ jobs:
     name: 🚀 release
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout Repo # Checkout repo
+     - name: Checkout Repo # Checkout 
         uses: actions/checkout@v1
      - name: Use Node.js # Configure Node.js
         uses: actions/setup-node@v1
