@@ -8,13 +8,14 @@ jobs:
     runs-on: ubuntu-latest # Run on Ubuntu Docker image
     steps:
       - name: Checkout Repo # Checkout repo
-        run: actions/checkout@v1
+        uses: actions/checkout@v1
       - name: Use Node.js # Configure Node.js
-        run: actions/setup-node@v1
+        uses: actions/setup-node@v1
         with:
           node-version: "18.12.1" # Set Node.js Version
           registry-url: "https://registry.npmjs.org" # Set Node.js reigistry
       - name: Deploy Info # Print GitHub Deploy info
+        run:
       - name: Install # Install dependancies
         run: npm install
       - name: Build # Build app if needed
@@ -22,6 +23,7 @@ jobs:
       - name: Test
         run: npm run test --if-present # Run tests if needed
       - name: Publish
+        run:
         if: github.event_name == 'release' && github.event.action == 'published' # Check if publish step should run
         run: npm publish --access public # Publish package
         env:
