@@ -4,13 +4,13 @@ on:
     branches:
       - master
 jobs:
-  build:
+  run:
     runs-on: ubuntu-latest # Run on Ubuntu Docker image
     steps:
       - name: Checkout Repo # Checkout repo
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       - name: Use Node.js # Configure Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: "18.12.1" # Set Node.js Version
           registry-url: "https://registry.npmjs.org" # Set Node.js reigistry
